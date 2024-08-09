@@ -51,14 +51,20 @@ const theme = createTheme({
   },
   typography: {
     fontSize: 16,
+    fontFamily: ['Fauna One', 'sans-serif'].join(','),
     h1: {
-      fontSize: 48
+      fontSize: 48,
+      fontFamily: ['Cinzel', 'sans-serif'].join(','),
+
     },
     h2: {
-      fontSize: 36
+      fontSize: 36,
+      fontFamily: ['Cinzel', 'sans-serif'].join(','),
+
     },
     h3: {
-      fontSize: 20
+      fontSize: 20,
+      fontFamily: ['Cinzel', 'sans-serif'].join(','),
     }
   }
 });

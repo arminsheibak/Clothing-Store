@@ -1,4 +1,4 @@
-import { Badge, Box, IconButton } from "@mui/material";
+import { Badge, Box, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MenuOutlined, Person2Outlined, SearchOutlined, ShoppingBagOutlined } from "@mui/icons-material";
 import useCartStore from "../store";
@@ -32,7 +32,9 @@ const NavBar = () => {
           sx={{ ":hover": { cursor: "pointer"} }}
           color='black'
         >
+          <Typography variant="h3" fontWeight='600' >
           Clothing Store
+          </Typography>
         </Box>
         <Box
         display='flex'
