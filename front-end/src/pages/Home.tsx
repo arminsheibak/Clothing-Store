@@ -1,9 +1,13 @@
-import MainCarousel from '../components/MainCarousel'
+import MainCarousel from "../components/MainCarousel";
+import ProductsList from "../components/ProductsList";
 
 const Home = () => {
   return (
-    <MainCarousel />
-  )
-}
+    <>
+      <MainCarousel />
+      <ProductsList />
+    </>
+  );
+};
 
 export default Home;

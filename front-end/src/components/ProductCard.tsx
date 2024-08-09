@@ -16,6 +16,12 @@ const ProductCard = ({ product }: Props) => {
   const addItem = useCartStore((s) => s.addItem);
   const navigate = useNavigate();
 
+  const categoryMap: { [key: string]: string } = {
+    TR: "Top Rated",
+    NA: "New Arrivals",
+    BS: "Best Sellers",
+  };
+
   return (
     <Box>
       <Box
@@ -65,7 +71,7 @@ const ProductCard = ({ product }: Props) => {
       </Box>
       <Box marginTop="3px">
         <Typography variant="subtitle2" color={shades.neutral[700]}>
-          {product.category}
+          {categoryMap[product.category]}
         </Typography>
         <Typography>{product.title}</Typography>
         <Typography fontWeight="bold">${product.price}</Typography>
