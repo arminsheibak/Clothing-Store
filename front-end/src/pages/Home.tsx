@@ -1,9 +1,9 @@
-import React from 'react'
+import MainCarousel from '../components/MainCarousel'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <MainCarousel />
   )
 }
 
-export default Home
+export default Home;
