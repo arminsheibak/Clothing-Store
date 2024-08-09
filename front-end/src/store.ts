@@ -17,7 +17,19 @@ const useCartStore = create<CartStore>((set) => ({
   isCartOpen: false,
   setCartOpen: () => set(store => ({cart:[...store.cart], isCartOpen: !store.isCartOpen})),
   addItem: (product, count) =>
-    set((store) => ({ cart: [...store.cart, { product: product, count: count }], isCartOpen: store.isCartOpen })),
+    set((store) => {
+      if (store.cart.find(item => item.product == product)) {
+        return ({ cart: store.cart.map((item) => {
+          if (item.product.id == product.id) {
+            item.count = count;
+          }
+          return item;
+        }), isCartOpen: store.isCartOpen })}
+      else {
+          return ({ cart: [...store.cart, { product: product, count: count }], isCartOpen: store.isCartOpen })
+        }
+      }
+    ),
   removeItem: (product) =>
     set((store) => ({
       cart: store.cart.filter((item) => item.product.id !== product.id),

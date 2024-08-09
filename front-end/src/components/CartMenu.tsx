@@ -49,7 +49,7 @@ const CartMenu = () => {
               <Box key={item.product.id}>
                 <FlexBox p="15px 0">
                   <Box flex="1 1 40%">
-                    <img src={item.product.image} alt={item.product.title} />
+                    <img src={item.product.image} alt={item.product.title} width='100%' />
                   </Box>
                   <Box flex="1 1 60%">
                     <FlexBox mb="5px">
