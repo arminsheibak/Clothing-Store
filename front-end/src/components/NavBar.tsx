@@ -1,13 +1,12 @@
 import { Badge, Box, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MenuOutlined, Person2Outlined, SearchOutlined, ShoppingBagOutlined } from "@mui/icons-material";
-import { useState } from "react";
 import useCartStore from "../store";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const [isCartOpen, setCartOpen] = useState(false)
   const cart = useCartStore(s => s.cart)
+  const setCartOpen = useCartStore(s => s.setCartOpen)
 
   return (
     <Box
@@ -61,7 +60,7 @@ const NavBar = () => {
             },
           }}
           >
-            <IconButton onClick={() => setCartOpen(true)} >
+            <IconButton onClick={() => setCartOpen()} >
               <ShoppingBagOutlined color='primary' />
             </IconButton>
           </Badge>

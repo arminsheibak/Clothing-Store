@@ -4,6 +4,8 @@ import Product from "./entities/Product";
 
 interface CartStore {
   cart: CartItem[];
+  isCartOpen: boolean;
+  setCartOpen: () => void;
   addItem: (product: Product) => void;
   removeItem: (product: Product) => void;
   increaseCount: (product: Product) => void;
@@ -12,11 +14,14 @@ interface CartStore {
 
 const useCartStore = create<CartStore>((set) => ({
   cart: [],
+  isCartOpen: false,
+  setCartOpen: () => set(store => ({cart:[...store.cart], isCartOpen: !store.isCartOpen})),
   addItem: (product) =>
-    set((store) => ({ cart: [...store.cart, { product: product, count: 1 }] })),
+    set((store) => ({ cart: [...store.cart, { product: product, count: 1 }], isCartOpen: store.isCartOpen })),
   removeItem: (product) =>
     set((store) => ({
       cart: store.cart.filter((item) => item.product.id !== product.id),
+      isCartOpen: store.isCartOpen
     })),
   increaseCount: (product) =>
     set((store) => ({
@@ -26,6 +31,7 @@ const useCartStore = create<CartStore>((set) => ({
         }
         return item;
       }),
+      isCartOpen: store.isCartOpen
     })),
   decreaseCount: (product) =>
     set((store) => ({
@@ -35,6 +41,7 @@ const useCartStore = create<CartStore>((set) => ({
         }
         return item;
       }),
+      isCartOpen: store.isCartOpen
     })),
 }));
 
