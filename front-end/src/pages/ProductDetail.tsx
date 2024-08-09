@@ -10,7 +10,7 @@ const ProductDetail = () => {
   const {id} = useParams();
   const [count, setCount] = useState(1)
   const [wish, setWish] = useState(false)
-  const {data: product} = useProduct(parseInt(id!))
+  const {data: product, error} = useProduct(parseInt(id!))
   const {
     addItem,
   } = useCartStore();
@@ -20,6 +20,10 @@ const ProductDetail = () => {
     NA: "New Arrivals",
     BS: "Best Sellers",
   };
+
+  if (error) {
+    throw new Error();
+  }
 
   return (
     <Box width="80%" m="80px auto">
