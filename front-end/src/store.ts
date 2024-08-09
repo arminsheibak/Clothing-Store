@@ -6,7 +6,7 @@ interface CartStore {
   cart: CartItem[];
   isCartOpen: boolean;
   setCartOpen: () => void;
-  addItem: (product: Product) => void;
+  addItem: (product: Product, count: number) => void;
   removeItem: (product: Product) => void;
   increaseCount: (product: Product) => void;
   decreaseCount: (product: Product) => void;
@@ -16,8 +16,8 @@ const useCartStore = create<CartStore>((set) => ({
   cart: [],
   isCartOpen: false,
   setCartOpen: () => set(store => ({cart:[...store.cart], isCartOpen: !store.isCartOpen})),
-  addItem: (product) =>
-    set((store) => ({ cart: [...store.cart, { product: product, count: 1 }], isCartOpen: store.isCartOpen })),
+  addItem: (product, count) =>
+    set((store) => ({ cart: [...store.cart, { product: product, count: count }], isCartOpen: store.isCartOpen })),
   removeItem: (product) =>
     set((store) => ({
       cart: store.cart.filter((item) => item.product.id !== product.id),
