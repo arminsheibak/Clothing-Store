@@ -49,7 +49,7 @@ const CartMenu = () => {
               <Box key={item.product.id}>
                 <FlexBox p="15px 0">
                   <Box flex="1 1 40%">
-                    <img src={item.product.image} alt={item.product.title} width='100%' />
+                    <img src={item.product.image} alt={item.product.title} width='80%' />
                   </Box>
                   <Box flex="1 1 60%">
                     <FlexBox mb="5px">
@@ -60,6 +60,9 @@ const CartMenu = () => {
                         <Close />
                       </IconButton>
                     </FlexBox>
+                    <Typography>
+                        {`${item.product.description.substring(0, 50)}...`}
+                      </Typography>
                     <FlexBox m="15px 0">
                       <Box
                         display="flex"
