@@ -1,9 +1,14 @@
-import { Box, IconButton } from "@mui/material";
+import { Badge, Box, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MenuOutlined, Person2Outlined, SearchOutlined, ShoppingBagOutlined } from "@mui/icons-material";
+import { useState } from "react";
+import useCartStore from "../store";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const [isCartOpen, setCartOpen] = useState(false)
+  const cart = useCartStore(s => s.cart)
+
   return (
     <Box
       display="flex"
@@ -42,9 +47,24 @@ const NavBar = () => {
           <IconButton >
             <Person2Outlined color='primary' />
           </IconButton>
-          <IconButton >
-            <ShoppingBagOutlined color='primary' />
-          </IconButton>
+          <Badge
+          badgeContent={cart.length}
+          color='secondary'
+          invisible={cart.length == 0}
+          sx={{
+            "& .MuiBadge-badge": {
+              right: 5,
+              top: 5,
+              padding: "0 4px",
+              height: "14px",
+              minWidth: "13px",
+            },
+          }}
+          >
+            <IconButton onClick={() => setCartOpen(true)} >
+              <ShoppingBagOutlined color='primary' />
+            </IconButton>
+          </Badge>
           <IconButton >
             <MenuOutlined color='primary' />
           </IconButton>
