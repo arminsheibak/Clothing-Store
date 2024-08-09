@@ -50,7 +50,7 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontSize: 11,
+    fontSize: 16,
     h1: {
       fontSize: 48
     },
