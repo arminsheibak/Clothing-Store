@@ -50,7 +50,7 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontSize: 16,
+    fontSize: 12,
     fontFamily: ['Fauna One', 'sans-serif'].join(','),
     h1: {
       fontSize: 48,
