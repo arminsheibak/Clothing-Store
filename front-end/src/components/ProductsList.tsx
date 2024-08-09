@@ -1,10 +1,10 @@
 import { useState } from "react";
 import useProducts from "../hooks/useProducts";
-import { Box, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
+import { Box, CircularProgress, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import ProductCard from "./ProductCard";
 
 const ProductsList = () => {
-  const { data: products, error, isLoading } = useProducts();
+  const { data: products, isLoading } = useProducts();
   const [filterValue, setFilterValue] = useState("all");
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -19,6 +19,7 @@ const ProductsList = () => {
   });
 
   return (
+    <>
     <Box width="80%" margin="80px auto">
       <Typography variant="h3" textAlign="center">
         Our Featured Products
@@ -42,6 +43,9 @@ const ProductsList = () => {
         <Tab label="BEST SELLERS" value="bestSellers"></Tab>
         <Tab label="TOP RATED" value="topRated"></Tab>
       </Tabs>
+      {isLoading && <Box mt='30px' display='flex' justifyContent='center' alignItems='center' >
+        <CircularProgress color="inherit" />
+      </Box>}
       <Box
         m="0 auto"
         display="grid"
@@ -49,7 +53,7 @@ const ProductsList = () => {
         justifyContent='space-around'
         rowGap='20px'
         columnGap='1.33%'
-      >
+        >
         {filterValue === 'all' && products?.map(product => {
           return <ProductCard key={product.id} product={product}  />
         }) }
@@ -66,6 +70,7 @@ const ProductsList = () => {
 
       </Box>
     </Box>
+    </>
   );
 };
 
