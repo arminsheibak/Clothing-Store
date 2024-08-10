@@ -11,11 +11,9 @@ class OrderItemInline(admin.StackedInline):
     model = OrderItem
     extra = 0
 
-class ShippingInfoInline(admin.StackedInline):
-    model = ShippingInfo
-    extra = 0
-
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ["id", "placed_at"]
-    inlines = [OrderItemInline, ShippingInfoInline]
+    inlines = [OrderItemInline]
+
+admin.site.register(ShippingInfo)
