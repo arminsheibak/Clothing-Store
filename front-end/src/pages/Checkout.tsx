@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldValue, FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import useCartStore from "../store";
 import {
   Box,
@@ -12,7 +12,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { shades } from "../theme";
-import { useMutation } from "@tanstack/react-query";
+import apiClient from "../services/apiClient";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
   first_name: string;
@@ -36,16 +37,22 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const cart = useCartStore((s) => s.cart);
+  const navigate = useNavigate();
+  const flushCart = useCartStore((s) => s.flushCart);
   const isFirstStep = activeStep == 0;
   const isSecondStep = activeStep == 1;
+
   
 
   const onSubmit = (data: FieldValues) => {
     if (activeStep == 1) {
-      console.log(data)
+      apiClient.post('/api/orders/', {shipping_info : data , order_items: {...cart} });
+      flushCart();
+      navigate('/confirmation')
     }
     setActiveStep(activeStep + 1);
-  };
+
+    };
 
   return (
     <Box width="80%" margin="100px auto">

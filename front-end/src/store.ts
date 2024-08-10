@@ -10,6 +10,7 @@ interface CartStore {
   removeItem: (product: Product) => void;
   increaseCount: (product: Product) => void;
   decreaseCount: (product: Product) => void;
+  flushCart: () => void;
 }
 
 const useCartStore = create<CartStore>((set) => ({
@@ -55,6 +56,7 @@ const useCartStore = create<CartStore>((set) => ({
       }),
       isCartOpen: store.isCartOpen
     })),
+  flushCart: () => set(() => ({ cart: [], isCartOpen: false }))
 }));
 
 export default useCartStore;
