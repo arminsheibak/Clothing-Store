@@ -30,7 +30,7 @@ const CartMenu = () => {
   } = useCartStore();
   const totalPrice = cart.reduce((total, item) => {
     return total + item.product.price * item.count;
-  }, 0);
+  }, 0).toFixed(2) ;
 
   return (
     <AsidePanel isOpen={isCartOpen}>
